@@ -19,8 +19,8 @@ const transporter = nodemailer.createTransport({
 transporter.verify((error, success) => {
   if (error) {
     console.error('Email configuration error:', error.message);
-    console.log('Email User:', process.env.EMAIL_USER ? 'Set' : 'Missing');
-    console.log('Email Pass:', process.env.EMAIL_PASS ? 'Set' : 'Missing');
+    console.log('Email User:', process.env.EMAIL_USER);
+    console.log('Email Pass:', process.env.EMAIL_PASS);
   } else {
     console.log('Email service ready');
   }
