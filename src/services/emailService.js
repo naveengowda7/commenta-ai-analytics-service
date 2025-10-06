@@ -10,14 +10,19 @@ const transporter = nodemailer.createTransport({
   port: 465,
   tls: {
     rejectUnauthorized: false
-  }
+  },
+  connectionTimeout: 10000,
+  greetingTimeout: 10000,
+  socketTimeout: 30000
 });
 
 transporter.verify((error, success) => {
   if (error) {
-    console.error('❌ Email configuration error:', error.message);
+    console.error('Email configuration error:', error.message);
+    console.log('Email User:', process.env.EMAIL_USER ? 'Set' : 'Missing');
+    console.log('Email Pass:', process.env.EMAIL_PASS ? 'Set' : 'Missing');
   } else {
-    console.log('✅ Email service ready');
+    console.log('Email service ready');
   }
 });
 
