@@ -6,6 +6,11 @@ const transporter = nodemailer.createTransport({
     user: process.env.EMAIL_USER,
     pass: (process.env.EMAIL_PASS || '').replace(/\s+/g, ''),
   },
+  secure: true,
+  port: 465,
+  tls: {
+    rejectUnauthorized: false
+  }
 });
 
 transporter.verify((error, success) => {
@@ -22,7 +27,7 @@ async function sendAnalysisCompletedEmail(to, videoTitle, dashboardUrl) {
     const mailOptions = {
       from: `"Commenta - YouTube Analytics" <${process.env.EMAIL_USER}>`,
       to,
-      subject: `✅ Analysis Complete: "${videoTitle}"`,
+      subject: `Analysis Complete: "${videoTitle}"`,
       html: `
         <!DOCTYPE html>
         <html>

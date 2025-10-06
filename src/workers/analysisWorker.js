@@ -88,7 +88,7 @@ const analysisWorker = new Worker(
           });
 
           // Send notification
-          const dashboardUrl = `${process.env.FRONTEND_URL}/dashboard/${videoId}`;
+          const dashboardUrl = `${process.env.FRONTEND_URL}/video/${videoId}`;
           if (user?.email) {
             await sendAnalysisCompletedEmail(user.email, video.title, dashboardUrl);
           }
